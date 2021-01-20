@@ -1,11 +1,13 @@
 export default {
-    primary: '#6aeac3',
+    primary: '#10e2b9',
     secondary: '#ed4a62',
-    backgroundGray: '#fefefe',
-    lightGray: '#f9fbfa',
+    backgroundGray: '#fdfdfd',
+    lightGray: '#f6f8f7',
     lightGrayDarken: '#f5f6f6',
+
     FONT: {
-        gray: '#cccecd',
-        darkGray: '#474d4c',
+        lightGray: '#b5b8b7',
+        gray: '#949494',
+        darkGray: '#2e3331',
     }
 }
