@@ -5,198 +5,44 @@ import {
   StyleSheet,
   FlatList,
   TextInput,
-  TouchableOpacity,
-  ImageBackground,
   ScrollView,
 } from "react-native";
+
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Text } from "native-base";
-import COLORS from "./../Assets/COLORS";
 
-const CATEGORIES = [
-  {
-    id: "Offers", 
-    label: "Offers",
-    url: "https://www.crushpixel.com/big-static15/preview4/red-sale-web-banner-pop-2116681.jpg",
-  },
-  {
-    id: "Grocery", 
-    label: "Grocery",
-    url: "https://thumbs.dreamstime.com/b/shopping-paper-bag-different-groceries-dark-wooden-background-flat-lay-space-text-156220130.jpg",
-  },
-  {
-    id: "Breakfast", 
-    label: "Breakfast",
-    url: "https://t3.ftcdn.net/jpg/01/41/19/42/360_F_141194240_CJaLbe3x2xL8wZfrB7rsYrYLYFFYfGUi.jpg",
-  },
-  {
-    id: "Pizza", 
-    label: "Pizza",
-    url: "https://www.cumanagement.com/sites/default/files/2019-09/pizza-box.jpg",
-  },
-  {
-    id: "Japan", 
-    label: "Japan",
-    url: "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/bento-3704d07.jpg",
-  },
-];
-const NEWS = [
-  {
-    id: "1", 
-    url: "https://blog.pizzahut.com/wp-content/uploads/2020/03/999_Postcard_R5_Option22.png",
-  },
-  {
-    id: "2", 
-    url: "https://www.whynotdeals.com/wp-content/uploads/2016/11/deliveroo-singapore-free-delivery-for-all-orders-promotion-3-5-45pm-22-24-nov-2016_why-not-deals-e1479771195704.jpg",
-  },
-  {
-    id: "3", 
-    url: "https://www.chewboom.com/wp-content/uploads/2020/01/McDonald%E2%80%99s-Welcomes-Back-2-For-5-Mix-Match-Deal-678x381.jpg",
-  },
-];
-const FEATURES = [
-  {
-    id: "1", 
-    url: "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/next-level-fried-chicken-dbd69d6.jpg",
-    title: "🐓 Chicken Class By Urban Kitchens",
-    note: "4.4 Very Good ",
-    describe: "(50+) - American - Chicken - Fried chicken - Salads",
-    distance: "4.6 km away - Free delivery",
-    delveryTime: "40 - 60",
-    deliveryFree: true,
-    promoLabel: "Free delivery",
-  },
-  {
-    id: "2", 
-    url: "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/next-level-fried-chicken-dbd69d6.jpg",
-    title: "🐓 Chicken Class By Urban Kitchens",
-    note: "4.4 Very Good ",
-    describe: "(50+) - American - Chicken - Fried chicken - Salads",
-    distance: "4.6 km away - Free delivery",
-    delveryTime: "40 - 60",
-    deliveryFree: true,
-    promoLabel: "10% off",
-  },
-  {
-    id: "3", 
-    url: "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/next-level-fried-chicken-dbd69d6.jpg",
-    title: "🐓 Chicken Class By Urban Kitchens",
-    note: "4.4 Very Good ",
-    describe: "(50+) - American - Chicken - Fried chicken - Salads",
-    distance: "4.6 km away - Free delivery",
-    delveryTime: "40 - 60",
-    deliveryFree: true,
-    promoLabel: "Free delivery",
-  },
-];
+import {
+  FirstItemFeaturesComponent,
+  FirstItemNewsComponent,
+  FirstItemCategoriesComponent,
+} from "../Components";
 
-const FIRST_ITEM_SPACER = 17
-const Categories = () => (
-    <ImageBackground source={{ uri: item.url }} style={{ ...styles.category, ...style }}>
-      <Text style={styles.categoryLabel}>
-        {item.label}
-      </Text>
-    </ImageBackground>
-)
+import { COLORS, TYPOGRAPHY } from "../Assets";
 
-(function renderFirstItem(WrappedComponent, index) {
-  return ({props}) => {
+import { NEWS_WIDTH } from "../Components/NewsComponent";
+import { CATEGORY_WIDTH } from "../Components/CategoriesComponent";
+import { FEATURE_WIDTH } from "../Components/FeaturesComponent";
 
-    const newProps = {
-      props,
-      style,
+import { CATEGORIES, NEWS, FEATURES } from "../Assets/DATA";
 
-    }
-    return(
-      // Wraps the input component in a container, without mutating it. Good!
-       <WrappedComponent { ...newProps } />
-  )
-  }
-})(
-        Categories
-)
-
-const HOCFirstItem = (WrappedComponent) => {
-  return ({ props }) => {
-    console.log('props', props)
-    const { index } = props
-    const newProps = {
-      props,
-      style: index !== 0 ? {} : styles.firstItemPadding,
-    }
-
-    return (
-        <WrappedComponent { ...newProps } />
-    )
-  }
-}
-const CategoriesComponent = ({item, style}) => (
-    <ImageBackground source={{ uri: item.url }} style={{ ...styles.category, ...style }}>
-      <Text style={styles.categoryLabel}>
-        {item.label}
-      </Text>
-    </ImageBackground>
-)
+export const MARGIN_LEFT_BODY = 13;
 
 const DeliverooHomePage = () => {
-  const renderCategories = ({ item, index }) => {
-    const FirstItemCategories = HOCFirstItem(CategoriesComponent)
-    return (
-        <FirstItemCategories item={item} index={index}/>
-    )
-  };
-
-  const renderNews = ({ item, style }) => (
-    <ImageBackground source={{ uri: item.url }} style={{ ...styles.news, ...style }}>
-      <TouchableOpacity style={styles.newsCommandButton}>
-        <Text style={styles.newsCommandLabel}>
-          je commande
-        </Text>
-      </TouchableOpacity>
-    </ImageBackground>
+  const renderCategories = ({ item, index }) => (
+    <FirstItemCategoriesComponent item={item} index={index} />
+  );
+  const renderNews = ({ item, index }) => (
+    <FirstItemNewsComponent item={item} index={index} />
+  );
+  const renderFeatures = ({ item, index }) => (
+    <FirstItemFeaturesComponent item={item} index={index} />
   );
 
-  const renderFeatures = ({ item, style }) => (
-    <View style={styles.wrapperFeature}>
-      <View style={styles.wrapperFeatureImage}>
-        <ImageBackground source={{ uri: item.url }} style={{ ...styles.featureImage, ...style }}>
-          <View style={styles.featurePromoWrapper}>
-            <Text style={styles.featurePromoLabel}>
-              {item.promoLabel}
-            </Text>
-          </View>
-        </ImageBackground>
-      </View>
-      <View style={styles.featureTimeWrapper}>
-        <Text style={styles.featureTimeValue}>
-          {item.delveryTime}
-        </Text>
-        <Text style={styles.featureTimeUnit}>
-          min
-        </Text>
-      </View>
-      <Text style={styles.featureTitle}>
-        {item.title}
-      </Text>
-
-      <Text>
-        <Text style={styles.featureDescriptionNote}>
-          {item.note}
-        </Text>
-        <Text style={styles.textGray}>
-          {item.describe}
-        </Text>
-      </Text>
-      <Text style={styles.textGray}>
-        {item.distance}
-      </Text>
-    </View>
-  );
 
   return (
     <ScrollView style={styles.wrapper}>
-       {/*HEADER*/}
+      {/*HEADER*/}
       <View style={styles.wrapperHeader}>
         {/* LOCATION-USER */}
         <View style={styles.wrapperLocationUser}>
@@ -218,7 +64,6 @@ const DeliverooHomePage = () => {
                 color={COLORS.primary}
                 style={styles.locationIcon}
               />
-              {/* <MaterialIcons name="expand_more" color="#6aeac3" size={25} /> */}
             </View>
           </View>
           <View style={styles.headerUserIcon}>
@@ -229,15 +74,15 @@ const DeliverooHomePage = () => {
             />
           </View>
         </View>
-        {/* LIVRAISON TYPE */}
-        <View style={styles.wrapperLivraisonType}>
-          <View style={[styles.livraisonType, styles.livraisonTypeActive]}>
-            <Text style={{ ...styles.livraisonTypeLabel, ...styles.livraisonTypeActiveLabel }}>
+        {/* DELIVERY TYPE */}
+        <View style={styles.wrapperDeliveryType}>
+          <View style={[styles.deliveryType, styles.deliveryTypeActive]}>
+            <Text style={{ ...styles.deliveryTypeLabel, ...styles.deliveryTypeActiveLabel }}>
               Delivery
             </Text>
           </View>
-          <View style={styles.livraisonType}>
-            <Text style={styles.livraisonTypeLabel}>
+          <View style={styles.deliveryType}>
+            <Text style={styles.deliveryTypeLabel}>
               Pickup
             </Text>
           </View>
@@ -247,12 +92,12 @@ const DeliverooHomePage = () => {
           <View style={styles.wrapperInput}>
             <MaterialIcons
               name="search"
-              color={COLORS.FONT.gray}
+              color={COLORS.FONT.lightGray}
               size={22}
             />
             <TextInput
-              placeholder="Dish, restaurants or cuisines"
-              placeholderTextColor={COLORS.FONT.gray}
+              placeholder="Dishes, restaurants or cuisines"
+              placeholderTextColor={COLORS.FONT.lightGray}
               style={styles.inputSettingInput}
             />
           </View>
@@ -270,53 +115,51 @@ const DeliverooHomePage = () => {
         <FlatList
           data={CATEGORIES}
           renderItem={renderCategories}
-          keyExtractor={item => item.id}
           numColumns={1}
           scrollEnabled
           horizontal
           style={styles.categoriesWrapper}
           showsHorizontalScrollIndicator={false}
+          snapToInterval={CATEGORY_WIDTH}
+          decelerationRate={"normal"}
+          pagingEnabled
         />
-        {/* NEWS SLIDER*/}
-{/*        <FlatList
+        {/*NEWS SLIDER*/}
+        <FlatList
           data={NEWS}
           renderItem={renderNews}
-          keyExtractor={item => item.id}
           contentContainerStyle={styles.newsSliderWrapper}
           numColumns={1}
           scrollEnabled
           horizontal
           showsHorizontalScrollIndicator={false}
-        />*/}
+          snapToInterval={NEWS_WIDTH}
+          decelerationRate={"normal"}
+          pagingEnabled
+        />
         <Text style={styles.trendingNowLabel}>
           Featured
         </Text>
         {/* FEATURES SLIDER*/}
-      {/*  <FlatList
+        <FlatList
           data={FEATURES}
           renderItem={renderFeatures}
-          keyExtractor={item => item.id}
-          // contentContainerStyle={styles.featuresSliderWrapper}
           numColumns={1}
           scrollEnabled
           horizontal
           showsHorizontalScrollIndicator={false}
-        />*/}
+          snapToInterval={FEATURE_WIDTH}
+          decelerationRate={"normal"}
+          pagingEnabled
+        />
       </View>
     </ScrollView>
   );
 };
-const FONTSIZE = 14
+
 const styles = StyleSheet.create({
-  firstItemPadding: {
-    paddingLeft: 17,
-  },
-  textGray: {
-    color: COLORS.FONT.gray,
-    fontSize: FONTSIZE
-  },
   wrapper: {
-    backgroundColor: '#ffffff'
+    backgroundColor: "#ffffff",
   },
   // HEADER
   wrapperHeader: {
@@ -324,22 +167,19 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingVertical: 12,
     borderBottomWidth: 1,
-  borderBottomColor: '#ededed'
+    borderBottomColor: COLORS.shadow,
   },
   // LOCATION-USER
   wrapperLocationUser: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 15,
+    marginBottom: 16,
   },
   locationTimeLabel: {
-    fontWeight: "200",
-    fontSize: 14,
-    color: "#babcbc",
+    ...TYPOGRAPHY.M3
   },
   locationLabel: {
-    fontWeight: "bold",
-    fontSize: 18,
+    ...TYPOGRAPHY.M4
   },
   locationWrapper: {
     flexDirection: "row",
@@ -369,26 +209,26 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 25,
   },
-  // LIVRAISON TYPE
-  wrapperLivraisonType: {
+  // DELIVERY TYPE
+  wrapperDeliveryType: {
     flexDirection: "row",
     marginBottom: 12,
   },
-  livraisonType: {
+  deliveryType: {
     paddingVertical: 3,
     paddingHorizontal: 18,
     borderRadius: 20,
     color: COLORS.primary,
   },
-  livraisonTypeActive: {
+  deliveryTypeActive: {
     backgroundColor: COLORS.primary,
   },
-  livraisonTypeActiveLabel: {
-    color: "#fff",
-    fontWeight: "bold",
+  deliveryTypeActiveLabel: {
+    ...TYPOGRAPHY.M1,
+    fontWeight: 'bold'
   },
-  livraisonTypeLabel: {
-    fontSize: 13,
+  deliveryTypeLabel: {
+    ...TYPOGRAPHY.M1,
     color: COLORS.primary,
   },
   // INPUT-SETTINGS
@@ -403,15 +243,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: COLORS.lightGrayDarken,
     flex: 1,
-    paddingHorizontal: 15,
+    paddingHorizontal: 14,
     borderRadius: 3,
   },
   inputSettingInput: {
     paddingLeft: 0,
     paddingRight: 0,
-    fontSize: 16,
     marginLeft: 7,
     borderRadius: 3,
+    ...TYPOGRAPHY.M5,
   },
   settingIcon: {
     paddingRight: 12,
@@ -423,130 +263,19 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.backgroundGray,
   },
   // CATEGORIES SLIDER
-  categoryLabel: {
-    color: "#ffff",
-    fontWeight: "bold",
-    textShadowColor: COLORS.gray,
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 2,
-    fontSize: 13,
-  },
-  category: {
-    height: 85,
-    width: 85,
-    borderRadius: 3,
-    marginRight: 7,
-    justifyContent: "flex-end",
-    paddingBottom: 7,
-    paddingLeft: 5,
-    overflow: "hidden",
-  },
   categoriesWrapper: {
     marginBottom: 15,
   },
   // NEWS SLIDER
   newsSliderWrapper: {
-    marginBottom: 15,
-  },
-  news: {
-    justifyContent: "flex-end",
-    width: 340,
-    height: 170,
-    borderRadius: 3,
-    marginRight: 7,
-    overflow: "hidden",
-  },
-  newsCommandButton: {
-    marginBottom: 10,
-    marginLeft: 10,
-    paddingVertical: 4,
-
-    paddingHorizontal: 7,
-    backgroundColor: COLORS.primary,
-    borderRadius: 5,
-    alignSelf: "flex-start",
-  },
-  newsCommandLabel: {
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: 14,
+    marginBottom: 20,
   },
   // TRENDING NOW LABEL
   trendingNowLabel: {
-    fontWeight: "bold",
-    fontSize: 18,
-    color: COLORS.FONT.darkGray,
+    ...TYPOGRAPHY.M4,
     marginBottom: 15,
+    marginLeft: MARGIN_LEFT_BODY,
   },
-  //FEATURES
-  wrapperFeature: {
-    marginRight: 7,
-    flexDirection: "column",
-    width: 310,
-    overflow: 'hidden',
-    position: "relative",
-  },
-  wrapperFeatureImage: {
-    overflow: 'hidden',
-    marginBottom: 15,
-  },
-  featureImage: {
-    width: '100%',
-    height: 180,
-    borderRadius: 5,
-    overflow: "hidden",
-  },
-  featurePromoWrapper: {
-    backgroundColor: COLORS.secondary,
-    paddingHorizontal: 3,
-    paddingVertical: 5,
-    alignSelf: "flex-start",
-    borderRadius: 5,
-    marginTop: 7,
-    marginLeft: 7,
-  },
-  featurePromoLabel: {
-    fontSize: 14,
-    color: "#fff",
-  },
-  featureTimeWrapper: {
-    paddingVertical: 6,
-    paddingHorizontal: 17,
-    borderRadius: 25,
-    backgroundColor: "#ffffff",
-    alignSelf: "flex-start",
-    overflow: "hidden",
-    position: "absolute",
-    bottom: 78,
-    right: 15,
-
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-
-    elevation: 3,
-  },
-  featureTimeUnit: {
-    textAlign: 'center',
-    color: COLORS.FONT.gray,
-    lineHeight: 14,
-    fontSize: 14,
-  },
-  featureTimeValue: {
-    fontSize: 17,
-    fontWeight: "bold",
-  },
-  featureTitle: {
-    fontWeight: 'bold'
-  },
-  featureDescriptionNote: {
-    fontSize: FONTSIZE,
-    color:COLORS.FONT.primaryDarken
-  }
 });
 
 export default DeliverooHomePage;
