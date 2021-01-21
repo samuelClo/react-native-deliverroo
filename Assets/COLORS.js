@@ -6,7 +6,7 @@ export default {
     lightGrayDarken: '#f5f6f6',
 
     FONT: {
-        lightGray: '#b5b8b7',
+        primaryDarken: '#009992',
         gray: '#949494',
         darkGray: '#2e3331',
     }
