@@ -42,7 +42,7 @@ export const NEWS = [
 export const FEATURES = [
   {
     id: "1",
-    url: "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/next-level-fried-chicken-dbd69d6.jpg",
+    url: "https://i.ytimg.com/vi/J-DzAeAXilo/maxresdefault.jpg",
     title: "🐓 Chicken Class By Urban Kitchens",
     note: "4.4 Very Good ",
     describe: "(50+) - American - Chicken - Fried chicken - Salads",
@@ -50,6 +50,7 @@ export const FEATURES = [
     deliveryTime: "40 - 60",
     deliveryFree: true,
     promoLabel: "Free delivery",
+    description: 'McDonald\'s, chaine emblématique de burger - Commandez en livraison à domicile : Big Mac, Chicken McNuggets, McFlurry, ... et tous vos produits préférés !'
   },
   {
     id: "2",

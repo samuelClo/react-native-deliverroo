@@ -11,5 +11,16 @@ export const ELEVATION = {
     shadowRadius: 1.41,
 
     elevation: 2,
+  },
+  E2: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.30,
+    shadowRadius: 4.65,
+
+    elevation: 8,
   }
 }

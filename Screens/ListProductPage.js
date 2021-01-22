@@ -27,7 +27,7 @@ const RESTAURANT = [
   }
 ]
 
-const ListProduct = () => {
+const ListProductPage = () => {
   const renderItem = ({item}) => {
     return (
       <Card  key={item.name}>
@@ -87,4 +87,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default ListProduct;
+export default ListProductPage;

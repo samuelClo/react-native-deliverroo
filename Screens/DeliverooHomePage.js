@@ -28,7 +28,7 @@ import { CATEGORIES, NEWS, FEATURES } from "../Assets/DATA";
 
 export const MARGIN_LEFT_BODY = 13;
 
-const DeliverooHomePage = () => {
+export const DeliverooHomePage = () => {
   const renderCategories = ({ item, index }) => (
     <FirstItemCategoriesComponent item={item} index={index} />
   );
@@ -39,9 +39,9 @@ const DeliverooHomePage = () => {
     <FirstItemFeaturesComponent item={item} index={index} />
   );
 
-
+ // TODO - see topbar
   return (
-    <ScrollView style={styles.wrapper}>
+    <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
       {/*HEADER*/}
       <View style={styles.wrapperHeader}>
         {/* LOCATION-USER */}
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     ...TYPOGRAPHY.M3
   },
   locationLabel: {
-    ...TYPOGRAPHY.M4
+    ...TYPOGRAPHY.M2
   },
   locationWrapper: {
     flexDirection: "row",
@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
     paddingRight: 0,
     marginLeft: 7,
     borderRadius: 3,
-    ...TYPOGRAPHY.M5,
+    ...TYPOGRAPHY.M4,
   },
   settingIcon: {
     paddingRight: 12,
@@ -272,10 +272,8 @@ const styles = StyleSheet.create({
   },
   // TRENDING NOW LABEL
   trendingNowLabel: {
-    ...TYPOGRAPHY.M4,
+    ...TYPOGRAPHY.M2,
     marginBottom: 15,
     marginLeft: MARGIN_LEFT_BODY,
   },
 });
-
-export default DeliverooHomePage;

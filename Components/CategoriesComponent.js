@@ -5,17 +5,15 @@ import { Text } from "native-base";
 
 import { COLORS, TYPOGRAPHY } from "../Assets";
 
-export const CATEGORY_WIDTH = 85
+export const CATEGORY_WIDTH = 85;
 
-export const CategoriesComponent = ({ item, style }) => {
-  return (
-    <ImageBackground source={{ uri: item.url }} style={{ ...styles.category, ...style }}>
-      <Text style={styles.categoryLabel}>
-        {item.label}
-      </Text>
-    </ImageBackground>
-  )
-}
+export const CategoriesComponent = ({ item, style }) => (
+  <ImageBackground source={{ uri: item.url }} style={{ ...styles.category, ...style }}>
+    <Text style={styles.categoryLabel}>
+      {item.label}
+    </Text>
+  </ImageBackground>
+);
 
 const styles = StyleSheet.create({
   categoryLabel: {
@@ -35,4 +33,4 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     overflow: "hidden",
   },
-})
+});

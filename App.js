@@ -1,9 +1,10 @@
 import React from 'react';
-import DeliverooHomePage from './Screens/DeliverooHomePage'
+
+import {ProductPage, DeliverooHomePage} from './Screens'
 
 const App = () => {
   return (
-      <DeliverooHomePage />
+      <ProductPage />
   );
 }
 
